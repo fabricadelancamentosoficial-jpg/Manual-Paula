@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>As Três Elegâncias · Paula Obradovic</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0D0D14; min-height: 100vh; padding: 32px 16px; color: rgba(255,255,255,0.82); }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #1A0810 0%, #3E0A18 50%, #5C1020 100%);
+    border-radius: 16px; padding: 48px 40px; text-align: center;
+    margin-bottom: 24px; border: 1px solid rgba(201,168,76,0.15);
+  }
+  .header-icon { font-size: 44px; margin-bottom: 16px; }
+  .header h1 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .header .slogan { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 18px; }
+  .header .tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .header .tag { font-size: 11px; padding: 4px 12px; border-radius: 20px; background: rgba(201,168,76,0.1); color: rgba(201,168,76,0.85); border: 1px solid rgba(201,168,76,0.25); }
+
+  /* ── NAV ── */
+  .nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .nav-btn {
+    font-size: 12px; padding: 8px 16px; border-radius: 24px;
+    border: 1.5px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.55); cursor: pointer; transition: all .2s; font-weight: 500;
+  }
+  .nav-btn:hover { border-color: #C9A84C; color: #C9A84C; }
+  .nav-btn.active { background: #5C1020; color: #C9A84C; border-color: #7A1A30; }
+  .nav-btn.accent { border-color: rgba(201,168,76,0.4); color: rgba(201,168,76,0.7); }
+  .nav-btn.accent.active { background: #3E0A18; color: #C9A84C; border-color: #C9A84C; }
+
+  /* ── SECTIONS ── */
+  .secao { display: none; }
+  .secao.ativa { display: block; animation: fadeUp .3s ease; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── CARD BASE ── */
+  .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px 30px; margin-bottom: 16px; }
+
+  /* ── TYPOGRAPHY ── */
+  .slabel { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; color: #C9A84C; text-transform: uppercase; margin-bottom: 8px; }
+  .stitle { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.3; }
+  .ssub { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; line-height: 1.6; }
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 18px 0; }
+  p.texto { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.85; margin-bottom: 12px; }
+
+  /* ── QUOTE ── */
+  .quote {
+    font-size: 15px; font-style: italic; color: rgba(201,168,76,0.9);
+    line-height: 1.65; padding: 16px 20px;
+    background: rgba(201,168,76,0.06); border-radius: 8px;
+    border-left: 3px solid #C9A84C; margin: 16px 0;
+  }
+
+  /* ── GRIDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 16px 0; }
+
+  /* ── IBLOCK ── */
+  .iblock { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 18px 20px; }
+  .iblock .blabel { font-size: 9px; font-weight: 600; letter-spacing: 2.5px; color: #C9A84C; text-transform: uppercase; margin-bottom: 12px; display: block; }
+  .iblock ul { list-style: none; }
+  .iblock ul li { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.6; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .iblock ul li:last-child { border-bottom: none; }
+  .iblock ul li::before { content: "→  "; color: #C9A84C; font-weight: 500; }
+
+  /* ── SPEC GRID ── */
+  .spec-item { background: rgba(92,16,32,0.4); border: 1px solid rgba(201,168,76,0.15); border-radius: 10px; padding: 16px; text-align: center; }
+  .spec-label { font-size: 9px; font-weight: 600; letter-spacing: 2px; color: rgba(201,168,76,0.6); text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .spec-value { font-size: 14px; font-weight: 600; color: #fff; line-height: 1.3; }
+
+  /* ── ENCONTRO ── */
+  .encontro { border-radius: 12px; overflow: hidden; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.08); }
+  .encontro-header { display: flex; align-items: flex-start; gap: 16px; background: linear-gradient(135deg, #1A0810 0%, #3E0A18 100%); padding: 18px 22px; }
+  .encontro-num { font-size: 28px; font-weight: 300; color: #C9A84C; min-width: 36px; }
+  .encontro-meta { flex: 1; }
+  .encontro-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; letter-spacing: 0.5px; }
+  .encontro-sub { font-size: 11px; color: rgba(201,168,76,0.7); letter-spacing: 1px; }
+  .encontro-body { padding: 18px 22px; background: rgba(255,255,255,0.02); }
+  .encontro-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 12px; }
+  .encontro-items { list-style: none; }
+  .encontro-items li { font-size: 12px; color: rgba(255,255,255,0.6); padding: 4px 0; line-height: 1.6; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .encontro-items li:last-child { border-bottom: none; }
+  .encontro-items li::before { content: "→  "; color: #C9A84C; font-weight: 600; }
+
+  /* ── BEFORE / AFTER ── */
+  .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ba-col { padding: 20px; border-radius: 10px; }
+  .ba-antes { background: rgba(139,42,42,0.12); border: 1px solid rgba(139,42,42,0.3); }
+  .ba-depois { background: rgba(42,107,58,0.12); border: 1px solid rgba(42,107,58,0.3); }
+  .ba-header { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .ba-header-antes { color: #C97070; }
+  .ba-header-depois { color: #70C980; }
+  .ba-col ul { list-style: none; }
+  .ba-col ul li { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.6; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .ba-col ul li:last-child { border-bottom: none; }
+  .ba-antes ul li::before { content: "→ "; color: #C97070; font-weight: 500; }
+  .ba-depois ul li::before { content: "→ "; color: #70C980; font-weight: 500; }
+
+  /* ── ALERT ── */
+  .alert { border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
+  .alert-gold { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25); }
+  .alert-bordo { background: rgba(92,16,32,0.25); border: 1px solid rgba(92,16,32,0.5); }
+  .alert p { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+  .alert strong { color: #fff; }
+
+  /* ── PILAR ── */
+  .pilar { border-radius: 12px; overflow: hidden; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: 64px 1fr; }
+  .pilar-num { display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: #C9A84C; }
+  .pilar-body { padding: 18px 22px; }
+  .pilar-title { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .pilar-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 6px; }
+  .pilar-meta { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  /* ── GANCHO CARD ── */
+  .gancho-card { border-radius: 10px; overflow: hidden; margin-bottom: 8px; display: grid; grid-template-columns: auto 1fr; border: 1px solid rgba(255,255,255,0.08); }
+  .gancho-tipo { display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #C9A84C; background: rgba(201,168,76,0.08); padding: 16px 10px; border-right: 1px solid rgba(201,168,76,0.15); white-space: nowrap; }
+  .gancho-content { padding: 16px 20px; }
+  .gancho-bolha { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); border-radius: 20px; padding: 3px 10px; margin-bottom: 8px; }
+  .gancho-frase { font-size: 14px; color: #fff; line-height: 1.6; margin-bottom: 8px; font-style: italic; }
+  .gancho-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ── MOV ROW ── */
+  .mov-row { border-radius: 10px; overflow: hidden; margin-bottom: 6px; display: grid; grid-template-columns: 48px 1fr; border: 1px solid rgba(255,255,255,0.08); }
+  .mov-num { display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 300; color: #C9A84C; background: rgba(92,16,32,0.3); }
+  .mov-body { padding: 14px 18px; }
+  .mov-title { font-size: 10px; font-weight: 600; letter-spacing: 2px; color: #C9A84C; text-transform: uppercase; margin-bottom: 5px; }
+  .mov-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 5px; }
+  .mov-ex { font-size: 12px; font-style: italic; color: rgba(255,255,255,0.4); }
+
+  /* ── ROTEIRO CARD ── */
+  .roteiro-card { border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(201,168,76,0.2); }
+  .roteiro-header { background: linear-gradient(135deg, #1A0810 0%, #3E0A18 100%); padding: 18px 22px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .r-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; color: rgba(201,168,76,0.65); text-transform: uppercase; margin-bottom: 6px; }
+  .r-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .r-badge { font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px; background: rgba(201,168,76,0.15); color: #C9A84C; border: 1px solid rgba(201,168,76,0.3); white-space: nowrap; }
+  .roteiro-body { padding: 18px 22px; background: rgba(255,255,255,0.02); }
+  .roteiro-idea { font-size: 12px; color: rgba(255,255,255,0.45); font-style: italic; background: rgba(255,255,255,0.03); border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; border-left: 2px solid rgba(255,255,255,0.1); }
+  .roteiro-teleprompter { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.9; white-space: pre-wrap; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 16px 18px; border-left: 3px solid #C9A84C; margin-bottom: 14px; }
+  .roteiro-editor { font-size: 12px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.03); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
+  .roteiro-editor .e-label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+  .roteiro-editor ul { list-style: none; padding-left: 4px; }
+  .roteiro-editor ul li { padding: 4px 0; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .roteiro-editor ul li:last-child { border-bottom: none; }
+  .roteiro-editor ul li::before { content: "— "; color: #C9A84C; }
+
+  /* ── FASE CARD ── */
+  .fase-card { border-radius: 10px; overflow: hidden; margin-bottom: 8px; display: grid; grid-template-columns: 4px 1fr; border: 1px solid rgba(255,255,255,0.08); }
+  .fase-stripe-green { background: #2D6A4F; }
+  .fase-stripe-gold { background: #C9A84C; }
+  .fase-stripe-bordo { background: #7A1A30; }
+  .fase-body { padding: 18px 22px; }
+  .fase-title { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .fase-title-green { color: #6DC99A; }
+  .fase-title-gold { color: #C9A84C; }
+  .fase-title-bordo { color: #E06070; }
+  .fase-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  /* ── SEMANA ── */
+  .semana-header { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 20px; cursor: pointer; margin-bottom: 6px; transition: all .2s; }
+  .semana-header:hover { border-color: rgba(201,168,76,0.3); }
+  .semana-header.open { border-color: rgba(201,168,76,0.35); background: rgba(92,16,32,0.2); }
+  .sh-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .sh-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+  .sh-toggle { color: #C9A84C; font-size: 16px; }
+  .semana-body { display: none; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
+  .semana-body.open { display: block; }
+
+  /* ── POST ROW ── */
+  .post-row { display: grid; grid-template-columns: 52px 100px 1fr 90px; align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .post-row:last-child { border-bottom: none; }
+  .post-day { display: flex; align-items: center; justify-content: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.06); }
+  .pd-dow { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+  .post-pilar { display: flex; align-items: center; justify-content: center; padding: 8px; border-right: 1px solid rgba(255,255,255,0.06); }
+  .pilar-badge { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; letter-spacing: 1px; text-align: center; }
+  .pb-conexao  { background: rgba(45,106,79,0.3); color: #6DC99A; border: 1px solid rgba(45,106,79,0.5); }
+  .pb-elevacao { background: rgba(26,58,107,0.3); color: #7EB3FF; border: 1px solid rgba(26,58,107,0.5); }
+  .pb-auto     { background: rgba(107,74,16,0.3); color: #C9A84C; border: 1px solid rgba(107,74,16,0.5); }
+  .pb-venda    { background: rgba(92,16,32,0.4); color: #E06070; border: 1px solid rgba(92,16,32,0.6); }
+  .pb-desaf    { background: rgba(80,30,30,0.3); color: #FF9090; border: 1px solid rgba(80,30,30,0.5); }
+  .pb-ritual   { background: rgba(122,26,48,0.3); color: #FF80A0; border: 1px solid rgba(122,26,48,0.5); }
+  .post-content { padding: 12px 16px; border-right: 1px solid rgba(255,255,255,0.06); }
+  .post-tema { font-size: 12.5px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .post-gancho { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; font-style: italic; }
+  .post-bolha { display: flex; align-items: center; justify-content: center; padding: 12px 10px; font-size: 10px; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.4; }
+
+  /* ── TAGS ── */
+  .tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .tag { font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); letter-spacing: 0.5px; }
+  .tag-gold { background: rgba(201,168,76,0.15); color: #C9A84C; border-color: rgba(201,168,76,0.3); }
+
+  /* ── PALETTE ── */
+  .palette-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 8px; margin: 16px 0; }
+  .palette-color { height: 52px; border-radius: 8px 8px 0 0; }
+  .palette-info { padding: 6px 0; }
+  .palette-name { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+  .palette-hex { font-size: 10px; color: rgba(255,255,255,0.35); }
+
+  /* ── COMMUNITY BLOCKS ── */
+  .comm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .comm-block { border-radius: 10px; padding: 22px 24px; border: 1px solid; }
+  .comm-elite { background: rgba(92,16,32,0.2); border-color: rgba(92,16,32,0.5); }
+  .comm-notavel { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.3); }
+  .comm-level { font-size: 9px; font-weight: 600; letter-spacing: 2.5px; color: rgba(201,168,76,0.7); text-transform: uppercase; margin-bottom: 10px; }
+  .comm-title { font-size: 26px; font-weight: 300; color: #fff; margin-bottom: 8px; }
+  .comm-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 620px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .comm-grid { grid-template-columns: 1fr; }
+    .palette-grid { grid-template-columns: repeat(3,1fr); }
+    .post-row { grid-template-columns: 44px 1fr; }
+    .post-pilar, .post-bolha { display: none; }
+    .header h1 { font-size: 26px; }
+    .header { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-icon">✦</div>
+    <h1>AS TRÊS ELEGÂNCIAS</h1>
+    <div class="slogan">Documento estratégico · Paula Obradovic · Fábrica de Lançamentos<br>Produto · Marca · Conteúdo · Lançamento · Mentoria R$15.000</div>
+    <div class="tags">
+      <span class="tag">Paula Obradovic</span>
+      <span class="tag">Soft Skill</span>
+      <span class="tag">EU · NÓS · ELES</span>
+      <span class="tag">Mentoria R$15.000</span>
+      <span class="tag">30 dias</span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <button class="nav-btn active" onclick="show('produto',this)">✦ O Produto</button>
+    <button class="nav-btn" onclick="show('marca',this)">◈ A Marca</button>
+    <button class="nav-btn" onclick="show('comunidade',this)">◉ Comunidade</button>
+    <button class="nav-btn" onclick="show('conteudo',this)">◎ Conteúdo</button>
+    <button class="nav-btn" onclick="show('roteiros',this)">▶ Roteiros</button>
+    <button class="nav-btn accent" onclick="show('plano',this)">⊕ Plano 30 Dias</button>
+  </div>
+
+
+  <!-- ══════════════════════════════ -->
+  <!-- SEÇÃO: O PRODUTO -->
+  <!-- ══════════════════════════════ -->
+  <div class="secao ativa" id="produto">
+
+    <div class="card">
+      <div class="slabel">Manifesto</div>
+      <div class="stitle">A Mulher que Eleva Quem Ela Já É</div>
+      <div class="ssub">A elegância não é o que você veste. É a harmonia entre quem você é, como você se relaciona e como o mundo te percebe.</div>
+      <p class="texto">Tem uma mulher que você conhece bem. Ela é competente. Ela tem história. Ela construiu coisas com as próprias mãos. Mas quando entra em certos ambientes, algo acontece. A voz baixa um pouco. O passo hesita. Ela olha ao redor e, por um segundo, se pergunta se realmente pertence àquele lugar.</p>
+      <p class="texto">Essa mulher não precisa de mais cursos. Não precisa de mais técnica. Não precisa ser outra pessoa. Ela precisa se encontrar.</p>
+      <div class="quote">"Elegância não é o que você veste. É a harmonia entre quem você é, como você se relaciona e como o mundo te percebe. Quando as três estão alinhadas, não existe sala que te intimide."</div>
+      <p class="texto">Você não vai sair daqui encaixada. <strong>Vai sair inteira.</strong></p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.35);font-style:italic;text-align:right;margin-top:8px">— Paula Obradovic</p>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Golden Circle</div>
+      <div class="stitle">Por Quê, Como e O Quê</div>
+      <hr class="divider">
+      <div class="grid-3" style="margin-top:8px">
+        <div class="iblock">
+          <span class="blabel" style="color:#E06070">Por Quê</span>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7">Porque toda mulher merece se ver com os olhos certos. Elegância não é privilégio de berço — é um soft skill que qualquer mulher pode aprender.</p>
+        </div>
+        <div class="iblock">
+          <span class="blabel" style="color:#C9A84C">Como</span>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7">Através das Três Elegâncias — EU, NÓS e ELES. Um caminho de dentro para fora que integra autoconhecimento, soft skill e presença.</p>
+        </div>
+        <div class="iblock">
+          <span class="blabel" style="color:#6DC99A">O Quê</span>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7">Mentoria individual. 3 encontros + workbooks + bônus. R$15.000. Não é consultoria de imagem. É o processo que faz o soft skill aparecer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Estrutura do Produto</div>
+      <div class="stitle">As Três Elegâncias — Mentoria Individual</div>
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="spec-item"><span class="spec-label">Formato</span><div class="spec-value">3 encontros online</div></div>
+        <div class="spec-item"><span class="spec-label">Público</span><div class="spec-value">Mulheres de resultado</div></div>
+        <div class="spec-item"><span class="spec-label">Ticket</span><div class="spec-value">R$15.000</div></div>
+        <div class="spec-item"><span class="spec-label">Inclui</span><div class="spec-value">3 encontros + workbooks</div></div>
+      </div>
+
+      <div class="encontro">
+        <div class="encontro-header">
+          <div class="encontro-num">I</div>
+          <div class="encontro-meta">
+            <div class="encontro-title">A ELEGÂNCIA DO EU</div>
+            <div class="encontro-sub">Estilo · Autoconhecimento · Presença interna</div>
+          </div>
+        </div>
+        <div class="encontro-body">
+          <div class="encontro-desc">Antes de qualquer aparência, existe uma mulher. Esse encontro é sobre ela — sobre entender quem ela é de verdade, o que comunica sem perceber.</div>
+          <ul class="encontro-items">
+            <li>Leitura da presença: tom de voz, postura, gestos</li>
+            <li>Mapa de identidade: o que comunica hoje vs. o que quer comunicar</li>
+            <li>Autoestima como ferramenta — não como vaidade</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="encontro">
+        <div class="encontro-header">
+          <div class="encontro-num">II</div>
+          <div class="encontro-meta">
+            <div class="encontro-title">A ELEGÂNCIA DO NÓS</div>
+            <div class="encontro-sub">Habilidade · Relações · Ambiente</div>
+          </div>
+        </div>
+        <div class="encontro-body">
+          <div class="encontro-desc">O seu nível de elegância aparece — ou trava — com mais força nas suas relações. Paula olha para o ambiente da cliente.</div>
+          <ul class="encontro-items">
+            <li>Mapa das relações: quem te impulsiona, quem te trava</li>
+            <li>Como se portar em ambientes de alto padrão sem perder autenticidade</li>
+            <li>A elegância na comunicação interpessoal</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="encontro">
+        <div class="encontro-header">
+          <div class="encontro-num">III</div>
+          <div class="encontro-meta">
+            <div class="encontro-title">A ELEGÂNCIA DO ELES</div>
+            <div class="encontro-sub">Virtude · Presença pública · Novos acessos</div>
+          </div>
+        </div>
+        <div class="encontro-body">
+          <div class="encontro-desc">O encontro da virada. A cliente entende como o mundo a percebe — e como pode, de forma autêntica e elegante, ocupar lugares maiores.</div>
+          <ul class="encontro-items">
+            <li>Imagem pública e presença digital</li>
+            <li>A elegância como ferramenta de ascensão</li>
+            <li>Plano de posicionamento: os próximos passos concretos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Antes & Depois Emocional</div>
+      <div class="stitle" style="margin-bottom:16px">A transformação que ela entrega</div>
+      <div class="ba-grid">
+        <div class="ba-col ba-antes">
+          <div class="ba-header ba-header-antes">Antes</div>
+          <ul>
+            <li>Competência sem presença — invisível</li>
+            <li>Entra no ambiente e hesita</li>
+            <li>Ganha 20k — poderia ganhar 50k</li>
+            <li>Aparência e essência fora de sintonia</li>
+            <li>A imagem não reflete o que construiu</li>
+          </ul>
+        </div>
+        <div class="ba-col ba-depois">
+          <div class="ba-header ba-header-depois">Depois</div>
+          <ul>
+            <li>Soft skill e presença alinhados</li>
+            <li>Entra em qualquer sala e pertence</li>
+            <li>Ganha o que merece. Sem boicote.</li>
+            <li>Aparência, essência e soft skill unidos</li>
+            <li>A imagem fala antes de abrir a boca</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /produto -->
+
+
+  <!-- ══════════════════════════════ -->
+  <!-- SEÇÃO: A MARCA -->
+  <!-- ══════════════════════════════ -->
+  <div class="secao" id="marca">
+
+    <div class="card">
+      <div class="slabel">Posicionamento com Identidade</div>
+      <div class="quote">"Elegância não é estética. É soft skill elevado à virtude."</div>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="iblock">
+          <span class="blabel">Para Quem</span>
+          <ul>
+            <li>Mulher de 35–55 anos com resultado construído</li>
+            <li>Tem dinheiro mas comete gafes sociais</li>
+            <li>Ganha 20k mas poderia ganhar 50k</li>
+            <li>Não tem o soft skill para pertencer ao alto padrão</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Contra o Quê</span>
+          <ul>
+            <li>Contra elegância = roupa, marca e berço</li>
+            <li>Contra 'seja natural' = porta para o gafe</li>
+            <li>Contra soft skill como dom — não habilidade</li>
+            <li>Contra Gucci como solução de identidade</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Vantagem</span>
+          <ul>
+            <li>Não herdou o repertório — construiu</li>
+            <li>Ascensão social sem manual</li>
+            <li>Europa: choque cultural real</li>
+            <li>50 anos, humor ácido, olhar crítico afiado</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Autoridade</span>
+          <ul>
+            <li>Método EU·NÓS·ELES criado por ela</li>
+            <li>20 anos de atuação</li>
+            <li>Ticket R$15k validado</li>
+            <li>Ela é o próprio soft skill funcionando</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Discurso do Movimento</div>
+      <div class="stitle">A alma do movimento</div>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="iblock">
+          <span class="blabel">A Causa</span>
+          <ul>
+            <li>Acabar com o boicote silencioso</li>
+            <li>Nomear o gap de identidade</li>
+            <li>Encurtar o caminho do soft skill</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Inimigo Externo</span>
+          <ul>
+            <li>Mercado que vende roupa como soft skill</li>
+            <li>'Seja natural' = porta para o gafe</li>
+            <li>Elegância como privilégio de berço</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Inimigo Interno</span>
+          <ul>
+            <li>'Ser rico atrai inveja'</li>
+            <li>O boicote disfarçado de humildade</li>
+            <li>Ganhar 20k quando pode ganhar 50k</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Grito de Guerra</span>
+          <ul>
+            <li>"Elegância não é o que você veste."</li>
+            <li>"É o soft skill que revela quem você é."</li>
+            <li>"A sala que te intimida não sabe com quem está lidando."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:16px">"Eu não sei ser pobre. E você também não precisa saber mais."</div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Identidade Visual</div>
+      <div class="stitle" style="margin-bottom:16px">O universo visual da Paula</div>
+      <div class="palette-grid">
+        <div><div class="palette-color" style="background:#3E0A18;border-radius:8px 8px 0 0"></div><div class="palette-info"><div class="palette-name">Bordô Escuro</div><div class="palette-hex">#3E0A18</div></div></div>
+        <div><div class="palette-color" style="background:#5C1020;border-radius:8px 8px 0 0"></div><div class="palette-info"><div class="palette-name">Bordô</div><div class="palette-hex">#5C1020</div></div></div>
+        <div><div class="palette-color" style="background:#C9A84C;border-radius:8px 8px 0 0"></div><div class="palette-info"><div class="palette-name">Dourado</div><div class="palette-hex">#C9A84C</div></div></div>
+        <div><div class="palette-color" style="background:#F5F0E8;border-radius:8px 8px 0 0;border:1px solid rgba(255,255,255,0.1)"></div><div class="palette-info"><div class="palette-name">Creme</div><div class="palette-hex">#F5F0E8</div></div></div>
+        <div><div class="palette-color" style="background:#1A1A2E;border-radius:8px 8px 0 0"></div><div class="palette-info"><div class="palette-name">Escuro</div><div class="palette-hex">#1A1A2E</div></div></div>
+        <div><div class="palette-color" style="background:#FAF8F4;border-radius:8px 8px 0 0;border:1px solid rgba(255,255,255,0.1)"></div><div class="palette-info"><div class="palette-name">Off White</div><div class="palette-hex">#FAF8F4</div></div></div>
+      </div>
+      <hr class="divider">
+      <div class="grid-2">
+        <div class="iblock">
+          <span class="blabel">Tipografia</span>
+          <div style="margin-bottom:10px"><div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px;letter-spacing:1px">TÍTULOS</div><div style="font-size:16px;color:#C9A84C;font-weight:600">Cormorant Garamond</div></div>
+          <div><div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px;letter-spacing:1px">CORPO</div><div style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:300">Jost · Clean & Refinada</div></div>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Tom de Voz</span>
+          <ul>
+            <li>Elegante sem ser fria</li>
+            <li>Ácida sem ser cruel</li>
+            <li>Direta sem ser rude</li>
+            <li>Profunda sem ser densa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /marca -->
+
+
+  <!-- ══════════════════════════════ -->
+  <!-- SEÇÃO: COMUNIDADE -->
+  <!-- ══════════════════════════════ -->
+  <div class="secao" id="comunidade">
+
+    <div class="card">
+      <div class="slabel">Perfil da Comunidade</div>
+      <div class="stitle" style="margin-bottom:16px">A comunidade das Notáveis</div>
+      <div class="comm-grid">
+        <div class="comm-block comm-elite">
+          <div class="comm-level">Seguidoras</div>
+          <div class="comm-title">Elite</div>
+          <div class="comm-desc">Quem acompanha o conteúdo e desperta para o soft skill.</div>
+        </div>
+        <div class="comm-block comm-notavel">
+          <div class="comm-level">Mentoradas do Clube</div>
+          <div class="comm-title">Notáveis</div>
+          <div class="comm-desc">Quem investiu no processo e faz parte do movimento.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Símbolo Central</div>
+      <div class="stitle">O Camaleão</div>
+      <p class="texto">A mulher elegante não é rígida. Ela lê o ambiente, calibra a frequência — e continua sendo ela mesma em qualquer sala. Não é falsidade. É o soft skill mais raro que existe.</p>
+      <div class="quote">"Você é simplesmente você de acordo com aquele ambiente."</div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Rituais da Comunidade</div>
+      <div class="grid-2" style="margin-top:8px">
+        <div class="iblock">
+          <span class="blabel">Trabalhando o Merecimento...</span>
+          <ul>
+            <li>Café superfaturado. Spa. Massagem.</li>
+            <li>Postar nos stories com a frase</li>
+            <li>Gera UGC orgânico das Notáveis</li>
+            <li>Age nas 3 elegâncias ao mesmo tempo</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Outros Rituais</span>
+          <ul>
+            <li>Ritual do Espelho — o que comunico hoje?</li>
+            <li>Ritual da Entrada — 3 respirações</li>
+            <li>Ritual do Camaleão — 5 min lendo o ambiente</li>
+            <li>Gafe Nomeado — no Clube, sem julgamento</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Linguagem que Ativa</span>
+          <ul>
+            <li>Soft skill · Porte · Presença · Merecimento</li>
+            <li>Revelar · Ocupar · Pertencer · Camaleão</li>
+            <li>Notável · Elite · Frequência · Identidade</li>
+          </ul>
+        </div>
+        <div class="iblock">
+          <span class="blabel">Frases Dela</span>
+          <ul>
+            <li>"Você é o que você faz repetidamente."</li>
+            <li>"As pessoas não são caixinhas."</li>
+            <li>"Posicionamento é ocupar. Comportamento é como."</li>
+            <li>"Eu não sei ser pobre."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /comunidade -->
+
+
+  <!-- ══════════════════════════════ -->
+  <!-- SEÇÃO: CONTEÚDO -->
+  <!-- ══════════════════════════════ -->
+  <div class="secao" id="conteudo">
+
+    <div class="card">
+      <div class="slabel">As 4 Linhas Editoriais</div>
+      <div class="stitle" style="margin-bottom:20px">Conteúdos com Identidade</div>
+
+      <div class="pilar" style="background:rgba(45,106,79,0.12);border-color:rgba(45,106,79,0.3)">
+        <div class="pilar-num" style="background:rgba(45,106,79,0.2)">01</div>
+        <div class="pilar-body">
+          <div class="pilar-title" style="color:#6DC99A">CONEXÃO · Quem ela é</div>
+          <div class="pilar-desc">Mostra a Paula como pessoa — como aprendeu, como vive, como pensa. A audiência não compra o método antes de comprar a pessoa. Origem, Europa, humor ácido, visão de mundo.</div>
+          <div class="pilar-meta">Quando usar: abre a semana · Reel / Stories · 1–2x semana</div>
+        </div>
+      </div>
+
+      <div class="pilar" style="background:rgba(26,58,107,0.15);border-color:rgba(26,58,107,0.35)">
+        <div class="pilar-num" style="background:rgba(26,58,107,0.25)">02</div>
+        <div class="pilar-body">
+          <div class="pilar-title" style="color:#7EB3FF">ELEVAÇÃO · O problema que ela não sabia que tinha</div>
+          <div class="pilar-desc">Trabalha crenças — mostra o problema, nomeia, abre a possibilidade de resolução. A Elegância do EU e o quadro Elegante × Desafinada vivem aqui.</div>
+          <div class="pilar-meta">Quando usar: após conexão · Reel / Carrossel · 1x semana</div>
+        </div>
+      </div>
+
+      <div class="pilar" style="background:rgba(107,74,16,0.15);border-color:rgba(107,74,16,0.35)">
+        <div class="pilar-num" style="background:rgba(107,74,16,0.25)">03</div>
+        <div class="pilar-body">
+          <div class="pilar-title" style="color:#C9A84C">AUTORIDADE · O que ela sabe fazer</div>
+          <div class="pilar-desc">Comprova que ela domina o método. O quadro "As 3 Elegâncias de..." vive aqui — analisa personagens com olhar de soft skill e prova a tese na prática.</div>
+          <div class="pilar-meta">Quando usar: depois da tensão instalada · Reel · 1x semana</div>
+        </div>
+      </div>
+
+      <div class="pilar" style="background:rgba(92,16,32,0.2);border-color:rgba(92,16,32,0.4)">
+        <div class="pilar-num" style="background:rgba(92,16,32,0.3)">04</div>
+        <div class="pilar-body">
+          <div class="pilar-title" style="color:#E06070">VENDA · O produto tem resultado real</div>
+          <div class="pilar-desc">Não é empurrar oferta — é mostrar evidência. Bastidores, depoimentos, cases, o que acontece dentro de uma sessão. Só funciona depois das outras 3 linhas.</div>
+          <div class="pilar-meta">Quando usar: final da semana · Reel / Stories · 1x semana</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Arquitetura do Roteiro</div>
+      <div class="stitle" style="margin-bottom:16px">Os 5 movimentos de todo conteúdo</div>
+      <div class="alert alert-gold" style="margin-bottom:16px">
+        <p>A cada <strong>3 segundos</strong> um novo micro-gatilho mantém a retenção frame a frame. A arquitetura garante que o vídeo tem destino. A cadência garante que ninguém sai no meio.</p>
+      </div>
+      <div class="mov-row"><div class="mov-num">1</div><div class="mov-body"><div class="mov-title">GANCHO · Parar a rolagem</div><div class="mov-desc">Uma afirmação ou pergunta que abre um conflito na mente do público. O cérebro só consegue fechar esse conflito continuando no conteúdo.</div><div class="mov-ex">Ex: "Você pode chegar de Gucci e ser completamente ignorada na sala."</div></div></div>
+      <div class="mov-row"><div class="mov-num">2</div><div class="mov-body"><div class="mov-title">LOOP ABERTO · Instigar o interesse</div><div class="mov-desc">Antes do conteúdo principal, abre novas perguntas e tensão sem resolução. É exatamente o que prende o público até o final.</div><div class="mov-ex">Ex: "Eu fiquei anos tentando entender o que essas mulheres tinham. Não era o cargo. Não era a roupa."</div></div></div>
+      <div class="mov-row"><div class="mov-num">3</div><div class="mov-body"><div class="mov-title">NARRATIVA · Desenvolver a história</div><div class="mov-desc">Cases, histórias e provas reais que aprofundam a tese. Quanto mais a pessoa se vê na história, mais quer a resposta.</div><div class="mov-ex">Ex: A história da cliente que chegou dizendo "eu não sei o que está errado."</div></div></div>
+      <div class="mov-row"><div class="mov-num">4</div><div class="mov-body"><div class="mov-title">CRENÇA · Instalar a crença</div><div class="mov-desc">A conclusão que fecha o loop e abre um novo: o desejo pela solução. Cria uma perspectiva nova que torna a promessa do produto uma conclusão óbvia.</div><div class="mov-ex">Ex: "Você não vai sair daqui diferente. Vai sair inteira."</div></div></div>
+      <div class="mov-row"><div class="mov-num">5</div><div class="mov-body"><div class="mov-title">CONVITE · Fazer o convite</div><div class="mov-desc">CTA proporcional ao estágio de relacionamento. Na fase de despertar: salvar, comentar, se identificar. Na fase de abertura: agir.</div><div class="mov-ex">Ex: "Se essa voz já te visitou, comenta uma palavra: PRESENÇA."</div></div></div>
+    </div>
+
+    <div class="card">
+      <div class="slabel">Os 7 Tipos de Gancho</div>
+      <div class="stitle" style="margin-bottom:20px">Escolha pelo estado emocional da audiência</div>
+      <div class="gancho-card"><div class="gancho-tipo">Identificação</div><div class="gancho-content"><div class="gancho-bolha">Autoconhecimento</div><div class="gancho-frase">"Tem uma voz dentro de você que aparece toda vez que você entra num ambiente de alto padrão."</div><div class="gancho-desc">A pessoa para porque reconhece a própria experiência. Quando usar: Conexão e Elevação.</div></div></div>
+      <div class="gancho-card"><div class="gancho-tipo">Polêmica</div><div class="gancho-content"><div class="gancho-bolha">Lifestyle de luxo</div><div class="gancho-frase">"Você pode chegar de Gucci, Chanel, Hermès — e ser completamente ignorada na sala."</div><div class="gancho-desc">Contradiz crença aceita pelo mercado. Quem concorda para com alívio. Quem discorda para com raiva. Os dois param.</div></div></div>
+      <div class="gancho-card"><div class="gancho-tipo">Contraintuitivo</div><div class="gancho-content"><div class="gancho-bolha">Liderança feminina</div><div class="gancho-frase">"As mulheres mais poderosas que eu já conheci falam menos que todo mundo na sala."</div><div class="gancho-desc">Vai contra o que o mercado de desenvolvimento vende. Quebra o padrão esperado.</div></div></div>
+      <div class="gancho-card"><div class="gancho-tipo">Curiosidade</div><div class="gancho-content"><div class="gancho-bolha">Séries / comportamento</div><div class="gancho-frase">"Tem uma cena de série que eu uso em toda mentoria. Não é de elegância. É de poder."</div><div class="gancho-desc">Abre um loop que só fecha assistindo até o fim. Quando usar: Autoridade.</div></div></div>
+      <div class="gancho-card"><div class="gancho-tipo">Conflito</div><div class="gancho-content"><div class="gancho-bolha">Dinheiro / negócios</div><div class="gancho-frase">"Ela tem empresa, resultado, história — e ainda pede licença para existir numa sala de alto padrão."</div><div class="gancho-desc">Cria tensão narrativa imediata. Competência versus percepção. Quando usar: Elevação.</div></div></div>
+      <div class="gancho-card"><div class="gancho-tipo">Recompensa</div><div class="gancho-content"><div class="gancho-bolha">Comportamento social</div><div class="gancho-frase">"3 sinais de que você está lendo a sala errado — e como corrigir antes de abrir a boca."</div><div class="gancho-desc">Promessa específica e imediata. O cérebro sabe exatamente o que vai ganhar.</div></div></div>
+      <div class="gancho-card"><div class="gancho-tipo">Crença Forte</div><div class="gancho-content"><div class="gancho-bolha">Ascensão / negócios</div><div class="gancho-frase">"Soft skill não é dom. É a habilidade mais rentável que existe — e a menos ensinada."</div><div class="gancho-desc">Declaração de posição clara. Quem concorda sente que encontrou uma aliada.</div></div></div>
+    </div>
+
+  </div><!-- /conteudo -->
+
+
+  <!-- ══════════════════════════════ -->
+  <!-- SEÇÃO: ROTEIROS -->
+  <!-- ══════════════════════════════ -->
+  <div class="secao" id="roteiros">
+
+    <div class="alert alert-gold" style="margin-bottom:16px">
+      <p>3 roteiros completos — um por fase do lançamento. Tempo: 60–90 segundos cada. <strong>Lacunas marcadas em [COLCHETES]</strong> para Paula preencher com a sua voz real.</p>
+    </div>
+
+    <!-- Roteiro 01 -->
+    <div class="roteiro-card">
+      <div class="roteiro-header">
+        <div>
+          <div class="r-eyebrow">Roteiro 01 · Segunda · Semana 1 · Conexão · Gancho: Identificação</div>
+          <div class="r-title">Aprendi elegância do jeito que ninguém espera</div>
+        </div>
+        <div class="r-badge">60–90s</div>
+      </div>
+      <div class="roteiro-body">
+        <div class="roteiro-idea">🎬 Paula sentada, ambiente intimista, luz natural, câmera próxima. Tom de conversa próxima, como se estivesse contando uma história para uma amiga. Sem música nos primeiros 10 segundos.</div>
+        <div class="roteiro-teleprompter">Cresci numa família simples.
+
+E aprendi sobre elegância de um jeito que ninguém espera.
+
+Não foi numa escola.
+Não foi numa família rica.
+
+Foi observando. Em silêncio.
+
+Cada ambiente que eu entrei e me senti deslocada...
+
+virou aula.
+
+Quando fui para a Europa com [IDADE],
+eu era [COMO ELA SE DESCREVIA NESSA ÉPOCA].
+
+Cheguei lá — e [O QUE A CHOCOU ESPECIFICAMENTE].
+
+[COMO ELA DESCREVE ESSE MOMENTO]
+
+Porque pela primeira vez eu me vi de fora.
+
+E entendi que elegância não tinha nada a ver
+com o que eu achava.
+
+Não era roupa.
+Não era sotaque.
+Não era família.
+
+Era como você lê o ambiente.
+Como você calibra a sua frequência.
+Como você continua sendo você — em qualquer sala.
+
+Isso tem nome.
+É soft skill.
+E se aprende.
+
+Eu não herdei elegância.
+Eu construí.
+
+E foi exatamente por isso
+que hoje eu consigo ensinar.
+
+Porque sei o caminho —
+porque percorri cada passo dele.
+
+Me conta aqui embaixo:
+você aprendeu — ou herdou?
+
+Porque a resposta muda tudo
+sobre como você se vê.</div>
+        <div class="roteiro-editor">
+          <span class="e-label">✂️ Orientações para o Editor</span>
+          <ul>
+            <li>Corte seco após "virou aula" — pausa de 1 segundo</li>
+            <li>Texto na tela: "soft skill" e "construí"</li>
+            <li>Ritmo lento no início, aumenta na narrativa, volta lento na crença</li>
+            <li>Último frame: fundo escuro com "Elegância não é dom. É construção." em dourado — 2 segundos</li>
+            <li>Música instrumental suave entra a partir da narrativa, bem baixinha</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-gold">#TrêsElegâncias</span>
+          <span class="tag">#SoftSkill</span>
+          <span class="tag">#ElegânciaDoEU</span>
+          <span class="tag">#Conexão</span>
+          <span class="tag">#PaulaObradovic</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roteiro 02 -->
+    <div class="roteiro-card">
+      <div class="roteiro-header">
+        <div>
+          <div class="r-eyebrow">Roteiro 02 · Terça · Semana 1 · Elevação · Gancho: Identificação profunda</div>
+          <div class="r-title">Você tem resultado — e ainda sente que não pertence</div>
+        </div>
+        <div class="r-badge">60–90s</div>
+      </div>
+      <div class="roteiro-body">
+        <div class="roteiro-idea">🎬 Paula sentada, mais próxima da câmera, luz mais quente. Sem música nos primeiros 15 segundos — o silêncio trabalha junto com o texto.</div>
+        <div class="roteiro-teleprompter">Tem uma voz dentro de você.
+
+Ela aparece toda vez que você entra
+num ambiente de alto padrão.
+
+E ela diz:
+
+"Será que eu pertenço aqui?"
+
+Você tem empresa. Tem resultado. Tem história.
+
+E ainda assim... essa voz aparece.
+
+Eu chamo isso de gap de identidade.
+
+É a distância entre quem você construiu
+e quem você ainda acredita que é.
+
+E esse gap... custa caro.
+
+Toda mulher que chega até mim passa por isso.
+
+Ela chegou longe.
+Mais longe do que imaginou um dia.
+
+Mas a imagem que ela tem de si mesma
+não acompanhou.
+
+Ela ainda se porta, se comunica, se posiciona
+para o mundo que ela tinha —
+não para o mundo que ela conquistou.
+
+E o mercado vai continuar te falando
+para trabalhar sua autoestima.
+
+Mas autoestima sem soft skill
+é se sentir bem —
+e continuar cometendo o mesmo gafe.
+
+O que muda o jogo não é se sentir melhor.
+
+É aprender a se ver com os olhos certos.
+
+Entender o que você comunica sem perceber.
+O que o seu corpo diz antes de você abrir a boca.
+O que o seu ambiente revela
+sobre quem você acredita que merece ser.
+
+Isso é a Elegância do EU.
+E é por onde tudo começa.
+
+Se essa voz já te visitou...
+
+comenta aqui uma palavra:
+
+PRESENÇA.
+
+Porque o primeiro passo começa
+quando você decide
+que essa voz não fala mais por você.</div>
+        <div class="roteiro-editor">
+          <span class="e-label">✂️ Orientações para o Editor</span>
+          <ul>
+            <li>Corte seco após "Será que eu pertenço aqui?" — pausa de 1 segundo</li>
+            <li>Texto na tela: "gap de identidade", "Elegância do EU", "PRESENÇA"</li>
+            <li>Zoom leve de aproximação durante o bloco da crença</li>
+            <li>Último frame: fundo escuro com PRESENÇA centralizado em dourado — 2 segundos</li>
+            <li>Música instrumental suave entra a partir da narrativa</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-gold">#TrêsElegâncias</span>
+          <span class="tag">#ElegânciaDoEU</span>
+          <span class="tag">#SoftSkill</span>
+          <span class="tag">#Autoconhecimento</span>
+          <span class="tag">#PaulaObradovic</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roteiro 03 -->
+    <div class="roteiro-card">
+      <div class="roteiro-header">
+        <div>
+          <div class="r-eyebrow">Roteiro 03 · Quarta · Semana 1 · Autoridade · Gancho: Contraintuitivo</div>
+          <div class="r-title">As mulheres mais poderosas falam menos que todo mundo</div>
+        </div>
+        <div class="r-badge">60–90s</div>
+      </div>
+      <div class="roteiro-body">
+        <div class="roteiro-idea">🎬 Paula de pé, postura aberta, ambiente sofisticado — estante ou espaço com decoração elegante. Câmera um pouco mais aberta. Roupa mais estruturada, acessório dourado.</div>
+        <div class="roteiro-teleprompter">As mulheres mais poderosas que eu já conheci
+
+não são as que falam mais alto.
+
+Não são as que dominam a conversa.
+
+São as que, quando abrem a boca —
+
+todo mundo para.
+
+Eu fiquei anos tentando entender o que elas tinham.
+
+Não era o cargo.
+Não era a roupa.
+Não era nem a experiência.
+
+Era algo que eu só consegui nomear
+depois de observar centenas de mulheres
+em ambientes de alto padrão.
+
+Presença não é volume.
+
+É identidade.
+
+É saber exatamente quem você é
+quando entra numa sala.
+
+É não precisar preencher o silêncio
+porque o silêncio não te incomoda.
+
+Você é simplesmente você
+de acordo com aquele ambiente.
+
+E é o oposto do que o mercado te ensina.
+
+O mercado te ensina a falar mais.
+A ocupar mais espaço.
+A ser mais assertiva.
+
+Mas as mulheres que realmente têm poder
+não estão competindo por atenção.
+
+A atenção vem.
+
+Quando você para de performar
+e começa a aparecer —
+
+tudo muda.
+
+Salva esse vídeo.
+
+Porque essa semana eu vou falar mais sobre isso.</div>
+        <div class="roteiro-editor">
+          <span class="e-label">✂️ Orientações para o Editor</span>
+          <ul>
+            <li>Corte seco após "todo mundo para" — pausa de 1 segundo</li>
+            <li>Texto na tela: "Presença não é volume. É identidade." — 2 segundos</li>
+            <li>Sem zoom — câmera estável transmite segurança</li>
+            <li>Cortes mais rápidos no bloco do mercado, volta lento em "Quando você para de performar"</li>
+            <li>Último frame: "Presença não é volume. É identidade." em dourado sobre fundo escuro</li>
+          </ul>
+        </div>
+        <div class="tags-row">
+          <span class="tag tag-gold">#TrêsElegâncias</span>
+          <span class="tag">#SoftSkill</span>
+          <span class="tag">#PresençaFeminina</span>
+          <span class="tag">#Autoridade</span>
+          <span class="tag">#PaulaObradovic</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /roteiros -->
+
+
+  <!-- ══════════════════════════════ -->
+  <!-- SEÇÃO: PLANO 30 DIAS -->
+  <!-- ══════════════════════════════ -->
+  <div class="secao" id="plano">
+
+    <div class="card">
+      <div class="slabel">Estratégia de Lançamento</div>
+      <div class="stitle" style="margin-bottom:16px">3 fases em 30 dias</div>
+      <div class="fase-card"><div class="fase-stripe-green"></div><div class="fase-body"><div class="fase-title fase-title-green">FASE 1 · SEMANAS 1–2 · DESPERTAR</div><div class="fase-desc">100% Conexão e Elevação. Zero produto. A Paula aparece, instala o soft skill como conceito e planta a tensão. A audiência não sabe ainda que existe produto.</div></div></div>
+      <div class="fase-card"><div class="fase-stripe-gold"></div><div class="fase-body"><div class="fase-title fase-title-gold">FASE 2 · SEMANA 3 · AQUECIMENTO</div><div class="fase-desc">Entra a Autoridade. "As 3 Elegâncias de..." estreia. A Desafinada aparece. Primeiros sinais de que algo está chegando — sem ser explícito. Mentorada aparece organicamente.</div></div></div>
+      <div class="fase-card"><div class="fase-stripe-bordo"></div><div class="fase-body"><div class="fase-title fase-title-bordo">FASE 3 · SEMANA 4 · ANTECIPAÇÃO + ABERTURA</div><div class="fase-desc">Dias 22–26: antecipação direta. Paula fala sobre o processo e bastidores. Lista de espera. Dias 27–30: abertura de vagas. 3 posts de venda. Encerra com fechamento.</div></div></div>
+    </div>
+
+    <!-- Semana 1 -->
+    <div class="semana-header open" onclick="toggleSemana(this)">
+      <div><div class="sh-title">Semana 1 · Fase 1 — Despertar</div><div class="sh-sub">Conexão & Elevação · Zero produto</div></div>
+      <div class="sh-toggle">▾</div>
+    </div>
+    <div class="semana-body open">
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEG</div></div><div class="post-pilar"><div class="pilar-badge pb-conexao">CONEXÃO</div></div><div class="post-content"><div class="post-tema">Aprendi elegância do jeito que ninguém espera</div><div class="post-gancho">"Cresci numa família simples. E aprendi sobre elegância de um jeito que ninguém espera."</div></div><div class="post-bolha">Ascensão social</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">TER</div></div><div class="post-pilar"><div class="pilar-badge pb-elevacao">ELEVAÇÃO</div></div><div class="post-content"><div class="post-tema">Você tem resultado — e ainda sente que não pertence</div><div class="post-gancho">"Tem uma voz dentro de você que aparece toda vez que você entra num ambiente de alto padrão."</div></div><div class="post-bolha">Autoconhecimento</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUA</div></div><div class="post-pilar"><div class="pilar-badge pb-auto">AUTORIDADE</div></div><div class="post-content"><div class="post-tema">As mulheres mais poderosas falam menos que todo mundo</div><div class="post-gancho">"As mulheres mais poderosas que eu já conheci não são as que falam mais alto."</div></div><div class="post-bolha">Liderança feminina</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUI</div></div><div class="post-pilar"><div class="pilar-badge pb-ritual">RITUAL</div></div><div class="post-content"><div class="post-tema">Trabalhando o merecimento...</div><div class="post-gancho">Mesa de café, silêncio, a frase. Deixa a imagem falar.</div></div><div class="post-bolha">Lifestyle</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEX</div></div><div class="post-pilar"><div class="pilar-badge pb-desaf">DESAFINADA</div></div><div class="post-content"><div class="post-tema">O gafe que ninguém tem coragem de apontar</div><div class="post-gancho">"Existe um gafe que mulheres bem-sucedidas cometem em alto padrão — e ninguém aponta."</div></div><div class="post-bolha">Comportamento</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SAB</div></div><div class="post-pilar"><div class="pilar-badge pb-conexao">CONEXÃO</div></div><div class="post-content"><div class="post-tema">O que me chocou num restaurante Michelin</div><div class="post-gancho">"O que me chocou num restaurante Michelin não foi a comida. Foi o que as pessoas faziam com as mãos."</div></div><div class="post-bolha">Lifestyle / viagem</div></div>
+    </div>
+
+    <!-- Semana 2 -->
+    <div class="semana-header" onclick="toggleSemana(this)">
+      <div><div class="sh-title">Semana 2 · Fase 1 — Despertar</div><div class="sh-sub">Aprofundando a tensão</div></div>
+      <div class="sh-toggle">▾</div>
+    </div>
+    <div class="semana-body">
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEG</div></div><div class="post-pilar"><div class="pilar-badge pb-elevacao">ELEVAÇÃO</div></div><div class="post-content"><div class="post-tema">Você ganhou o dinheiro. Mas ainda se comporta como se não tivesse.</div><div class="post-gancho">"Não é ingratidão. É uma crença que ficou — e que custa mais do que imagina."</div></div><div class="post-bolha">Autoconhecimento</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">TER</div></div><div class="post-pilar"><div class="pilar-badge pb-conexao">CONEXÃO</div></div><div class="post-content"><div class="post-tema">O que a Europa me ensinou que nenhum curso ensina</div><div class="post-gancho">"Morei na Europa. O que mais me chocou não foi a arquitetura, não foi a moda, não foi o vinho."</div></div><div class="post-bolha">Lifestyle / viagem</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUA</div></div><div class="post-pilar"><div class="pilar-badge pb-auto">AUTORIDADE</div></div><div class="post-content"><div class="post-tema">Presença não é volume. É identidade.</div><div class="post-gancho">"Eu fiquei anos tentando entender o que essas mulheres tinham. Não era o cargo. Não era a roupa."</div></div><div class="post-bolha">Liderança</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUI</div></div><div class="post-pilar"><div class="pilar-badge pb-ritual">RITUAL</div></div><div class="post-content"><div class="post-tema">Trabalhando o merecimento... versão spa</div><div class="post-gancho">Toalha branca. Vela. Chá. Convida as Notáveis a postarem a versão delas.</div></div><div class="post-bolha">Lifestyle</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEX</div></div><div class="post-pilar"><div class="pilar-badge pb-desaf">DESAFINADA</div></div><div class="post-content"><div class="post-tema">A Elegante × A Desafinada: na mesa do jantar</div><div class="post-gancho">"Você já jantou com uma? Ou foi a uma?"</div></div><div class="post-bolha">Comportamento</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SAB</div></div><div class="post-pilar"><div class="pilar-badge pb-elevacao">ELEVAÇÃO</div></div><div class="post-content"><div class="post-tema">Por que você se sente deslocada em ambientes de alto padrão</div><div class="post-gancho">"Não é síndrome da impostora. É um soft skill específico que ninguém te ensinou."</div></div><div class="post-bolha">Lifestyle</div></div>
+    </div>
+
+    <!-- Semana 3 -->
+    <div class="semana-header" onclick="toggleSemana(this)">
+      <div><div class="sh-title">Semana 3 · Fase 2 — Aquecimento</div><div class="sh-sub">Autoridade & Desejo pelo método</div></div>
+      <div class="sh-toggle">▾</div>
+    </div>
+    <div class="semana-body">
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEG</div></div><div class="post-pilar"><div class="pilar-badge pb-conexao">CONEXÃO</div></div><div class="post-content"><div class="post-tema">A versão de mim que ficou na Europa</div><div class="post-gancho">"Quando fui para a Europa, eu era [COMO ELA SE DESCREVE]. Essa mulher ficou lá."</div></div><div class="post-bolha">Origem</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">TER</div></div><div class="post-pilar"><div class="pilar-badge pb-auto">AUTORIDADE</div></div><div class="post-content"><div class="post-tema">As 3 Elegâncias de... [personagem a definir com Paula]</div><div class="post-gancho">"[Personagem] tem tudo para ser a mais elegante. Mas comete um erro que destrói o NÓS toda vez."</div></div><div class="post-bolha">Séries</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUA</div></div><div class="post-pilar"><div class="pilar-badge pb-elevacao">ELEVAÇÃO</div></div><div class="post-content"><div class="post-tema">O camaleão — o soft skill mais raro e mais rentável</div><div class="post-gancho">"A mulher elegante não é rígida. Ela lê o ambiente, calibra a frequência, continua sendo ela mesma."</div></div><div class="post-bolha">Comportamento</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUI</div></div><div class="post-pilar"><div class="pilar-badge pb-ritual">RITUAL</div></div><div class="post-content"><div class="post-tema">Trabalhando o merecimento... versão livraria</div><div class="post-gancho">Poltrona, livro, café. O luxo que não precisa de público para existir.</div></div><div class="post-bolha">Lifestyle</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEX</div></div><div class="post-pilar"><div class="pilar-badge pb-desaf">DESAFINADA</div></div><div class="post-content"><div class="post-tema">A Elegante × A Desafinada: na reunião de negócios</div><div class="post-gancho">"Tudo que você comunica antes de abrir a boca numa reunião. Tudo."</div></div><div class="post-bolha">Comportamento</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SAB</div></div><div class="post-pilar"><div class="pilar-badge pb-venda">VENDA</div></div><div class="post-content"><div class="post-tema">O que acontece no primeiro encontro das Três Elegâncias</div><div class="post-gancho">"Antes de falar de roupa, a gente faz uma coisa que a maioria nunca fez: lê a presença."</div></div><div class="post-bolha">Bastidores</div></div>
+    </div>
+
+    <!-- Semana 4 -->
+    <div class="semana-header" onclick="toggleSemana(this)">
+      <div><div class="sh-title">Semana 4 · Fase 3 — Antecipação & Abertura</div><div class="sh-sub">Converter convicção em ação</div></div>
+      <div class="sh-toggle">▾</div>
+    </div>
+    <div class="semana-body">
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEG</div></div><div class="post-pilar"><div class="pilar-badge pb-auto">AUTORIDADE</div></div><div class="post-content"><div class="post-tema">As 3 Elegâncias de... [personagem a definir]</div><div class="post-gancho">"[Personagem] tem o EU mais forte. Mas falha no NÓS toda vez que importa."</div></div><div class="post-bolha">Séries</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">TER</div></div><div class="post-pilar"><div class="pilar-badge pb-elevacao">ELEVAÇÃO</div></div><div class="post-content"><div class="post-tema">Soft skill não é dom. É a habilidade mais rentável que existe.</div><div class="post-gancho">"E a menos ensinada. Não por acidente — por interesse do mercado."</div></div><div class="post-bolha">Liderança</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUA</div></div><div class="post-pilar"><div class="pilar-badge pb-conexao">CONEXÃO</div></div><div class="post-content"><div class="post-tema">Ela não saiu diferente. Saiu inteira.</div><div class="post-gancho">"Quando ela chegou até mim, disse: eu não sei o que está errado."</div></div><div class="post-bolha">Transformação</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">QUI</div></div><div class="post-pilar"><div class="pilar-badge pb-ritual">RITUAL</div></div><div class="post-content"><div class="post-tema">Trabalhando o merecimento... jantar a sós</div><div class="post-gancho">Mesa posta para uma. Taça. Prato bonito. A elegância que não precisa de plateia.</div></div><div class="post-bolha">Lifestyle</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">SEX</div></div><div class="post-pilar"><div class="pilar-badge pb-venda">VENDA</div></div><div class="post-content"><div class="post-tema">Você não precisa mudar quem você é.</div><div class="post-gancho">"Você precisa parar de se comportar como se ainda fosse quem você era."</div></div><div class="post-bolha">Abertura</div></div>
+      <div class="post-row"><div class="post-day"><div class="pd-dow">DOM</div></div><div class="post-pilar"><div class="pilar-badge pb-venda">VENDA</div></div><div class="post-content"><div class="post-tema">Última vaga do mês.</div><div class="post-gancho">"Não vou fazer contagem regressiva. Você já sabe que precisa. O que espera?"</div></div><div class="post-bolha">Fechamento</div></div>
+    </div>
+
+  </div><!-- /plano -->
+
+</div><!-- /container -->
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('ativa');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleSemana(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.semana-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.semana-header').forEach(h => h.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    header.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
